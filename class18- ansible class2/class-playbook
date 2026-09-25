@@ -1,0 +1,17 @@
+- name: Multiple activities in the nodes
+  hosts: all
+  become: true
+  tasks:
+        - name: Touch a file 
+          ansible.builtin.file:
+           path: /home/devops/myfile.txt
+           state: touch
+           mode: u=rw,g=r,o=r
+        - name: Install apache
+          ansible.builtin.package:
+            name: apache2
+            state: present
+        - name: Create a user virat
+          ansible.builtin.user:
+           name: virat
+           create_home: yes
